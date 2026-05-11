@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --radius: 0.125rem;
+
+  /* shadcn/ui CSS variables mapped to Alini brand */
+  --background:         0 0% 4%;
+  --foreground:         40 10% 84%;
+  --card:               0 0% 8%;
+  --card-foreground:    40 10% 84%;
+  --primary:            352 83% 43%;   /* brand red */
+  --primary-foreground: 0 0% 100%;
+  --secondary:          0 0% 10%;
+  --secondary-foreground: 40 10% 70%;
+  --muted:              0 0% 10%;
+  --muted-foreground:   0 0% 47%;
+  --accent:             352 83% 43%;
+  --accent-foreground:  0 0% 100%;
+  --destructive:        352 83% 43%;
+  --destructive-foreground: 0 0% 100%;
+  --border:             0 0% 16%;
+  --input:              0 0% 16%;
+  --ring:               352 83% 43%;
+}
+
+html { scroll-behavior: smooth; }
+
+body { overflow-x: hidden; }
+
+/* Noise texture overlay */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Shake animation for wrong math answer */
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20%      { transform: translateX(-6px); }
+  40%      { transform: translateX(6px); }
+  60%      { transform: translateX(-4px); }
+  80%      { transform: translateX(4px); }
+}
+.animate-shake { animation: shake 0.4s ease; }
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
